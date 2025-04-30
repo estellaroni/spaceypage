@@ -192,17 +192,19 @@ export default function WorldsPage() {
                 <div className="glimmer-card overflow-hidden rounded-xl">
                   <div className="aspect-[16/10] relative overflow-hidden">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse z-10"></div>
-                    <img
+                    <Image
                       src="https://i.pinimg.com/736x/a5/0b/f8/a50bf8d75283fd5a99927b900a2cdba4.jpg"
                       alt="Article thumbnail"
+                      width={800}
+                      height={500}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
                   <div className="p-4 space-y-3">
                     <div className="text-sm text-indigo-400">Latest Discovery</div>
-                    <h3 className="text-lg font-bold text-white">New Findings on {planets[selectedPlanet].name}&rsquo;s Atmosphere</h3>
+                    <h3 className="text-lg font-bold text-white">New Findings on {planets[selectedPlanet].name}&apos;s Atmosphere</h3>
                     <p className="text-neutral-300 text-sm line-clamp-2">
-                      Recent observations reveal fascinating details about the composition and behavior of {planets[selectedPlanet].name}'s atmosphere.
+                      Recent observations reveal fascinating details about the composition and behavior of {planets[selectedPlanet].name}&apos;s atmosphere.
                     </p>
                     <div className="flex items-center justify-between pt-3 border-t border-neutral-800/30">
                       <span className="text-sm text-neutral-400">Written by CosmicExplorer</span>
@@ -223,9 +225,11 @@ export default function WorldsPage() {
                 <div className="glimmer-card overflow-hidden rounded-xl">
                   <div className="aspect-[16/10] relative overflow-hidden">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse z-10"></div>
-                    <img
+                    <Image
                       src="https://i.pinimg.com/736x/ad/29/f0/ad29f0251f4dcd9ec369e5b462c18d87.jpg"
                       alt="Article thumbnail"
+                      width={800}
+                      height={500}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
@@ -264,7 +268,7 @@ export default function WorldsPage() {
                     <div className="text-sm text-indigo-400">Research</div>
                     <h3 className="text-lg font-bold text-white">Scientific Breakthroughs on {planets[selectedPlanet].name}</h3>
                     <p className="text-neutral-300 text-sm line-clamp-2">
-                      Latest research unveils groundbreaking discoveries about {planets[selectedPlanet].name}&rsquo;s unique characteristics.
+                      Latest research unveils groundbreaking discoveries about {planets[selectedPlanet].name}&apos;s unique characteristics.
                     </p>
                     <div className="flex items-center justify-between pt-3 border-t border-neutral-800/30">
                       <span className="text-sm text-neutral-400">Written by SpaceResearcher</span>

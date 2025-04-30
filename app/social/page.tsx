@@ -140,9 +140,11 @@ export default function SocialPage() {
               <div className="glimmer-card overflow-hidden rounded-xl">
                 <div className="aspect-[4/3] relative overflow-hidden">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse z-10"></div>
-                  <img
+                  <Image
                     src="https://i.pinimg.com/736x/1c/dd/1a/1cdd1ad86dcc814ab0e88007c1f8aa15.jpg"
                     alt="Cosmic Guides"
+                    width={500}
+                    height={375}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -169,9 +171,11 @@ export default function SocialPage() {
               <div className="glimmer-card overflow-hidden rounded-xl">
                 <div className="aspect-[4/3] relative overflow-hidden">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse z-10"></div>
-                  <img
+                  <Image
                     src="https://i.pinimg.com/736x/78/d8/9c/78d89c724247245943cd1dda8100b37c.jpg"
                     alt="Virtual Observatory"
+                    width={500}
+                    height={375}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -198,9 +202,11 @@ export default function SocialPage() {
               <div className="glimmer-card overflow-hidden rounded-xl">
                 <div className="aspect-[4/3] relative overflow-hidden">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse z-10"></div>
-                  <img
+                  <Image
                     src="https://i.pinimg.com/736x/85/26/29/852629950857f7bbb0408528ad6b6ce4.jpg"
                     alt="Stellar Network"
+                    width={500}
+                    height={375}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -239,9 +245,11 @@ export default function SocialPage() {
                 <div className="glimmer-card overflow-hidden rounded-xl">
                   <div className="aspect-[16/9] relative overflow-hidden">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse z-10"></div>
-                    <img
+                    <Image
                       src="https://i.pinimg.com/736x/f1/6b/3d/f16b3d3eb2625ff479445275446675d6.jpg"
                       alt="The Future of Space Travel"
+                      width={800}
+                      height={450}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
@@ -270,9 +278,11 @@ export default function SocialPage() {
                 <div className="glimmer-card overflow-hidden rounded-xl">
                   <div className="aspect-[16/9] relative overflow-hidden">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse z-10"></div>
-                    <img
+                    <Image
                       src="https://i.pinimg.com/736x/01/2a/00/012a0044115df43c762d7434b93e6b25.jpg"
                       alt="Alien Life Outside the Black Hole Discussion"
+                      width={800}
+                      height={450}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
@@ -301,9 +311,11 @@ export default function SocialPage() {
                 <div className="glimmer-card overflow-hidden rounded-xl">
                   <div className="aspect-[16/9] relative overflow-hidden">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse z-10"></div>
-                    <img
+                    <Image
                       src="https://i.pinimg.com/736x/08/50/85/08508502a426c9be2135a570d8334311.jpg"
                       alt="Space Technology and the Young Generation"
+                      width={800}
+                      height={450}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
@@ -332,9 +344,11 @@ export default function SocialPage() {
                 <div className="glimmer-card overflow-hidden rounded-xl">
                   <div className="aspect-[16/9] relative overflow-hidden">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse z-10"></div>
-                    <img
+                    <Image
                       src="https://i.pinimg.com/736x/5a/8b/47/5a8b472883c52504e0b42ef3dbc28446.jpg"
                       alt="Space Art"
+                      width={800}
+                      height={450}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
