@@ -222,7 +222,7 @@ export default function Page() {
                 size="lg" 
                 className="rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300"
               >
-                <Link href="/worlds">Find your planet&apos;s news</Link>
+                <Link href="/worlds">Find your planet&rsquo;s news</Link>
               </Button>
             </div>
           </div>
@@ -463,7 +463,7 @@ export default function Page() {
                   <div className="p-6 space-y-4">
                     <h3 className="text-xl font-bold text-white line-clamp-2">Mars Colony Reports Record Growth in Sustainable Agriculture</h3>
                     <p className="text-neutral-300 text-sm line-clamp-3">
-                      The Red Planet&apos;s largest biodome complex has achieved a breakthrough in crop yields, promising food independence by 2045...
+                      The Red Planet&rsquo;s largest biodome complex has achieved a breakthrough in crop yields, promising food independence by 2045...
                     </p>
                     <div className="flex items-center justify-between">
                       <Button 
@@ -490,9 +490,9 @@ export default function Page() {
                     />
                   </div>
                   <div className="p-6 space-y-4">
-                    <h3 className="text-xl font-bold text-white line-clamp-2">Saturn&apos;s Rings to Open for Tourist Expeditions in 2026</h3>
+                    <h3 className="text-xl font-bold text-white line-clamp-2">Saturn's Rings to Open for Tourist Expeditions in 2026</h3>
                     <p className="text-neutral-300 text-sm line-clamp-3">
-                      The Planetary Tourism Board has approved the first commercial space tours through Saturn&apos;s iconic rings...
+                      The Planetary Tourism Board has approved the first commercial space tours through Saturn's iconic rings...
                     </p>
                     <div className="flex items-center justify-between">
                       <Button 
@@ -589,7 +589,7 @@ export default function Page() {
                       <h3 className="text-xl font-bold text-white line-clamp-2">First Interplanetary Botanical Garden Opens on Europa</h3>
                     </div>
                     <p className="text-neutral-300 text-sm line-clamp-3">
-                      Europa&apos;s subterranean greenhouse complex successfully cultivates exotic plant species from across the galaxy, creating a unique ecosystem under the ice...
+                      Europa&rsquo;s subterranean greenhouse complex successfully cultivates exotic plant species from across the galaxy, creating a unique ecosystem under the ice...
                     </p>
                     <div className="flex items-center justify-between">
                       <Button 

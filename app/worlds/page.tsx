@@ -2,6 +2,7 @@
 
 import { Playfair_Display, Inter } from 'next/font/google'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import { useState } from 'react'
 
@@ -38,10 +39,12 @@ export default function WorldsPage() {
       {/* Navigation */}
       <header className="flex items-center justify-between py-4 px-6 border-b border-neutral-800/50 backdrop-blur-md">
         <div className="flex items-center gap-2">
-          <img 
+          <Image 
             src="/nebula-logo.svg" 
             alt="Nebula News Logo" 
-            className="w-8 h-8 object-contain"
+            width={32}
+            height={32}
+            className="object-contain"
           />
           <Link href="/" className={`text-2xl md:text-3xl font-medium ${playfair.className}`}>
             Nebula News
@@ -140,9 +143,11 @@ export default function WorldsPage() {
                     >
                       <div className={`relative ${planet.name === 'Saturn' || planet.name === 'Jupiter' ? 'w-96 h-96' : 'w-80 h-80'}`}>
                         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500/20 to-purple-500/20 blur-xl animate-pulse"></div>
-                        <img
+                        <Image
                           src={planet.src}
                           alt={planet.name}
+                          width={384}
+                          height={384}
                           className={`w-full h-full object-contain ${planet.name === 'Saturn' ? 'scale-125' : planet.name === 'Jupiter' ? 'scale-110' : 'p-8'} rounded-full relative z-10`}
                         />
                         <div className="absolute inset-0 rounded-full border-2 border-white/20"></div>
@@ -195,7 +200,7 @@ export default function WorldsPage() {
                   </div>
                   <div className="p-4 space-y-3">
                     <div className="text-sm text-indigo-400">Latest Discovery</div>
-                    <h3 className="text-lg font-bold text-white">New Findings on {planets[selectedPlanet].name}'s Atmosphere</h3>
+                    <h3 className="text-lg font-bold text-white">New Findings on {planets[selectedPlanet].name}&rsquo;s Atmosphere</h3>
                     <p className="text-neutral-300 text-sm line-clamp-2">
                       Recent observations reveal fascinating details about the composition and behavior of {planets[selectedPlanet].name}'s atmosphere.
                     </p>
@@ -259,7 +264,7 @@ export default function WorldsPage() {
                     <div className="text-sm text-indigo-400">Research</div>
                     <h3 className="text-lg font-bold text-white">Scientific Breakthroughs on {planets[selectedPlanet].name}</h3>
                     <p className="text-neutral-300 text-sm line-clamp-2">
-                      Latest research unveils groundbreaking discoveries about {planets[selectedPlanet].name}'s unique characteristics.
+                      Latest research unveils groundbreaking discoveries about {planets[selectedPlanet].name}&rsquo;s unique characteristics.
                     </p>
                     <div className="flex items-center justify-between pt-3 border-t border-neutral-800/30">
                       <span className="text-sm text-neutral-400">Written by SpaceResearcher</span>
@@ -286,10 +291,12 @@ export default function WorldsPage() {
             {/* Logo and Description Column */}
             <div className="flex flex-col items-start gap-6">
               <div className="flex items-center gap-2">
-                <img 
+                <Image 
                   src="/nebula-logo.svg" 
                   alt="Nebula News Logo" 
-                  className="w-8 h-8 object-contain"
+                  width={32}
+                  height={32}
+                  className="object-contain"
                 />
                 <span className={`text-2xl font-medium text-white ${playfair.className}`}>
                   Nebula News
@@ -300,9 +307,11 @@ export default function WorldsPage() {
                   Your premier source for space exploration, astronomy, and cosmic discoveries.
                 </p>
                 <div className="w-48 h-48 relative">
-                  <img
+                  <Image
                     src="https://i.postimg.cc/KjJ0vfxL/Astronaut-helmet-rafiki.png"
                     alt="Astronaut helmet illustration"
+                    width={192}
+                    height={192}
                     className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(99,102,241,0.3)]"
                   />
                 </div>

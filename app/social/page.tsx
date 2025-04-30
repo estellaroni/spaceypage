@@ -2,6 +2,7 @@
 
 import { Playfair_Display, Inter } from 'next/font/google'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 
 const playfair = Playfair_Display({ 
@@ -22,10 +23,12 @@ export default function SocialPage() {
       {/* Navigation */}
       <header className="flex items-center justify-between py-4 px-6 border-b border-neutral-800/50 backdrop-blur-md">
         <div className="flex items-center gap-2">
-          <img 
+          <Image 
             src="/nebula-logo.svg" 
             alt="Nebula News Logo" 
-            className="w-8 h-8 object-contain"
+            width={32}
+            height={32}
+            className="object-contain"
           />
           <Link href="/" className={`text-2xl md:text-3xl font-medium ${playfair.className}`}>
             Nebula News
@@ -88,26 +91,32 @@ export default function SocialPage() {
                 <div className="absolute -inset-10 bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-indigo-500/10 rounded-[100px] blur-3xl"></div>
                 <p className="text-2xl text-neutral-200 relative z-10">
                   Joining the Nebula News community is about more than just staying informed about space. 
-                  It's an invitation to a vibrant network of stargazers, scientists, and space enthusiasts 
+                  It&rsquo;s an invitation to a vibrant network of stargazers, scientists, and space enthusiasts 
                   where you can share discoveries, discuss theories, and find your cosmic connection.
                 </p>
               </div>
 
               <div className="flex items-center justify-center gap-4 relative z-10">
                 <div className="flex -space-x-2">
-                  <img 
+                  <Image 
                     src="https://i.pravatar.cc/48?img=1" 
                     alt="Community member" 
+                    width={48}
+                    height={48}
                     className="w-12 h-12 rounded-full border-2 border-black"
                   />
-                  <img 
+                  <Image 
                     src="https://i.pravatar.cc/48?img=2" 
                     alt="Community member" 
+                    width={48}
+                    height={48}
                     className="w-12 h-12 rounded-full border-2 border-black"
                   />
-                  <img 
+                  <Image 
                     src="https://i.pravatar.cc/48?img=3" 
                     alt="Community member" 
+                    width={48}
+                    height={48}
                     className="w-12 h-12 rounded-full border-2 border-black"
                   />
                 </div>
@@ -359,10 +368,12 @@ export default function SocialPage() {
               {/* Logo and Description Column */}
               <div className="flex flex-col items-start gap-6">
                 <div className="flex items-center gap-2">
-                  <img 
+                  <Image 
                     src="/nebula-logo.svg" 
                     alt="Nebula News Logo" 
-                    className="w-8 h-8 object-contain"
+                    width={32}
+                    height={32}
+                    className="object-contain"
                   />
                   <span className={`text-2xl font-medium text-white ${playfair.className}`}>
                     Nebula News
@@ -373,9 +384,11 @@ export default function SocialPage() {
                     Your premier source for space exploration, astronomy, and cosmic discoveries.
                   </p>
                   <div className="w-48 h-48 relative">
-                    <img
+                    <Image
                       src="https://i.postimg.cc/KjJ0vfxL/Astronaut-helmet-rafiki.png"
                       alt="Astronaut helmet illustration"
+                      width={192}
+                      height={192}
                       className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(99,102,241,0.3)]"
                     />
                   </div>
