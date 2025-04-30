@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useEffect, useRef } from "react"
 import { Playfair_Display, Inter } from 'next/font/google'
+import { AnimatedBackground } from "@/components/AnimatedBackground"
 
 const playfair = Playfair_Display({ 
   subsets: ['latin'],
@@ -61,7 +62,9 @@ export default function Page() {
   }, []);
 
   return (
-    <div className={`flex flex-col min-h-screen bg-black text-foreground bg-dotted-grid ${inter.className}`}>
+    <div className={`flex flex-col min-h-screen text-foreground ${inter.className}`}>
+      <AnimatedBackground />
+      
       <style jsx global>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
@@ -84,9 +87,11 @@ export default function Page() {
         
         .glimmer-card {
           position: relative;
-          background: rgb(23, 23, 23);
+          background: rgba(23, 23, 23, 0.7);
+          backdrop-filter: blur(10px);
           border-radius: 12px;
           overflow: hidden;
+          border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .glimmer-card::before {
@@ -96,33 +101,9 @@ export default function Page() {
           background: linear-gradient(
             90deg,
             transparent,
-            rgba(236, 72, 153, 0.03),
-            rgba(236, 72, 153, 0.06),
-            rgba(236, 72, 153, 0.03),
-            transparent
-          );
-          background-size: 200% 100%;
-          animation: shimmer 8s ease-in-out infinite;
-          pointer-events: none;
-        }
-
-        .glimmer-pill {
-          position: relative;
-          background: rgb(23, 23, 23);
-          border-radius: 9999px;
-          overflow: hidden;
-        }
-        
-        .glimmer-pill::before {
-          content: '';
-          position: absolute;
-          inset: -1px;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(236, 72, 153, 0.03),
-            rgba(236, 72, 153, 0.06),
-            rgba(236, 72, 153, 0.03),
+            rgba(99, 102, 241, 0.1),
+            rgba(124, 58, 237, 0.2),
+            rgba(99, 102, 241, 0.1),
             transparent
           );
           background-size: 200% 100%;
@@ -139,8 +120,8 @@ export default function Page() {
           height: 600px;
           background: radial-gradient(
             circle at center,
-            rgba(255, 255, 255, 0.08) 0%,
-            rgba(255, 255, 255, 0.03) 35%,
+            rgba(99, 102, 241, 0.1) 0%,
+            rgba(124, 58, 237, 0.05) 35%,
             transparent 70%
           );
           pointer-events: none;
@@ -165,246 +146,671 @@ export default function Page() {
       `}</style>
 
       {/* Navigation */}
-      <header className="flex items-center justify-between py-4 px-6 border-b border-neutral-800/50">
+      <header className="flex items-center justify-between py-4 px-6 border-b border-neutral-800/50 backdrop-blur-md">
+        <div className="flex items-center gap-2">
+          <img 
+            src="/nebula-logo.svg" 
+            alt="Nebula News Logo" 
+            className="w-8 h-8 object-contain"
+          />
         <Link href="/" className={`text-2xl md:text-3xl font-medium ${playfair.className}`}>
-          VibeDev.ai
+            Nebula News
         </Link>
+        </div>
         <nav className="flex items-center gap-4">
           <Button 
             size="sm"
-            onClick={() => {
-              document.getElementById('early-access-form')?.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'center'
-              });
-            }}
+            variant="outline"
+            className="border-indigo-500/50 hover:bg-indigo-500/10"
           >
-            Sign Up
+            <Link href="/social">Social</Link>
+          </Button>
+          <Button 
+            size="sm"
+            variant="outline"
+            className="border-indigo-500/50 hover:bg-indigo-500/10"
+          >
+            <Link href="/worlds">Worlds</Link>
+          </Button>
+          <div className="relative group">
+            <Button 
+              size="sm"
+              variant="outline"
+              className="border-indigo-500/50 hover:bg-indigo-500/10 flex items-center gap-2"
+            >
+              Categories
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </Button>
+            <div className="absolute right-0 mt-2 w-48 py-2 bg-black/90 backdrop-blur-sm border border-indigo-500/20 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <a href="#" className="block px-4 py-2 text-sm text-neutral-300 hover:bg-indigo-500/10 hover:text-white">Space Tech</a>
+              <a href="#" className="block px-4 py-2 text-sm text-neutral-300 hover:bg-indigo-500/10 hover:text-white">Astronomy</a>
+              <a href="#" className="block px-4 py-2 text-sm text-neutral-300 hover:bg-indigo-500/10 hover:text-white">Exploration</a>
+              <a href="#" className="block px-4 py-2 text-sm text-neutral-300 hover:bg-indigo-500/10 hover:text-white">Alien Life</a>
+              <a href="#" className="block px-4 py-2 text-sm text-neutral-300 hover:bg-indigo-500/10 hover:text-white">Space Art</a>
+            </div>
+          </div>
+          <Button 
+            size="sm"
+            className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white"
+          >
+            Subscribe now
           </Button>
         </nav>
       </header>
 
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="py-20 px-6 relative">
+        <section className="py-40 md:py-56 px-6 relative">
           <div className="hero-glow" />
           <div className="max-w-[1200px] mx-auto text-center relative z-10">
-            {/* Logo Placeholder */}
-            <div className="mb-4">
-              <img 
-                src="/images/idevibelogo.png" 
-                alt="VibeDev Logo" 
-                className="w-36 h-36 mx-auto object-contain"
-              />
+            <div className="inline-flex items-center px-6 py-2 text-base font-medium text-indigo-400 mb-12 fade-in bg-indigo-500/10 border border-indigo-500/20 shadow-[0_0_15px_rgba(99,102,241,0.1)]">
+              <span className={playfair.className}>Exploring the Cosmos of Information</span>
             </div>
-            <div className="inline-flex items-center px-6 py-2 text-base font-medium text-purple-400 mb-8 glimmer-pill fade-in bg-purple-500/10 border border-purple-500/20 shadow-[0_0_15px_rgba(239,68,68,0.1)]">
-              <span className={playfair.className}>A Software Composer app</span>
-            </div>
-            <h1 className={`text-4xl md:text-5xl font-medium mb-6 tracking-tight fade-in delay-1 ${playfair.className}`}>
-              The Easiest Way To<br />Vibe Code With Cursor
+            <h1 className={`text-4xl md:text-6xl font-medium mb-8 tracking-tight fade-in delay-1 ${playfair.className}`}>
+              Discover the Universe of<br />News and Knowledge
             </h1>
-            <p className="text-lg text-neutral-400 mb-8 fade-in delay-2">
-              VibeDev is your IDE for Vibe Coding
+            <p className="text-lg md:text-xl text-neutral-400 mb-12 fade-in delay-2 max-w-2xl mx-auto">
+              Your portal to the latest discoveries and insights from across the galaxy
             </p>
             <div className="fade-in delay-3">
               <Button 
                 size="lg" 
-                className="rounded-full"
-                onClick={() => {
-                  document.getElementById('early-access-form')?.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'center'
-                  });
-                }}
+                className="rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300"
               >
-                Get Early Access
+                <Link href="/worlds">Find your planet's news</Link>
               </Button>
             </div>
           </div>
         </section>
 
-        {/* Demo Section */}
-        <section className="py-20 px-6">
-          <div className="max-w-[1200px] mx-auto scroll-animation">
-            <div className="glimmer-card">
-              <div className="bg-neutral-900">
-                <div className="flex flex-col md:flex-row h-auto md:h-[600px]">
-                  {/* Input Section */}
-                  <div className="w-full md:w-1/2 md:border-r border-neutral-800 p-6 flex flex-col">
-                    <div className="mb-6">
-                      <label className="block text-sm font-medium text-neutral-400 mb-2">What should Cursor do?</label>
-                      <div className="relative">
-                        <input
-                          type="text"
-                          placeholder="Describe what you want to build..."
-                          className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500/30"
-                        />
-                        <button className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-green-500/10 rounded-lg text-green-400 hover:bg-green-500/20 transition-colors">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M22 2L11 13"/>
-                            <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
-                          </svg>
-                        </button>
+        {/* Second Section - Explore */}
+        <section className="relative py-32 border-t border-neutral-800/10">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row items-center gap-12">
+              {/* Left side - Astronaut */}
+              <div className="w-full md:w-1/3">
+                <div className="aspect-square relative flex items-center justify-center">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse"></div>
+                  <img
+                    src="https://i.postimg.cc/YqL2DRzh/Astronaut-bro.png"
+                    alt="Astronaut floating in space"
+                    className="relative z-10 w-full h-full object-contain drop-shadow-[0_0_30px_rgba(99,102,241,0.4)]"
+                  />
                       </div>
                     </div>
                     
-                    <div>
-                      <h3 className="text-sm font-medium text-neutral-400 mb-4">Start from</h3>
-                      <div className="grid grid-cols-1 gap-3">
-                        {[...Array(2)].map((_, i) => (
-                          <button
-                            key={i}
-                            className="flex items-center gap-3 p-4 bg-neutral-800/50 rounded-lg hover:bg-neutral-800 transition-colors text-left group"
-                          >
-                            <div className="w-8 h-8 rounded-lg bg-green-500/10 text-green-400 flex items-center justify-center group-hover:bg-green-500/20 transition-colors">
-                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                              </svg>
+              {/* Right side - Content */}
+              <div className="w-full md:w-2/3">
+                <div className="max-w-3xl">
+                  <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+                    Explore the Universe of Information
+                  </h2>
+                  <p className="text-xl text-gray-300 mb-12">
+                    Dive into a vast collection of articles, stories, and insights from across the cosmos.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="p-6 rounded-2xl backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-300">
+                      <h3 className="text-2xl font-bold mb-4 text-white">Latest Discoveries</h3>
+                      <p className="text-gray-300">Stay updated with the most recent space exploration news and breakthroughs.</p>
                             </div>
-                            <span className="text-sm font-medium">Template {i + 1}</span>
-                          </button>
-                        ))}
+                    <div className="p-6 rounded-2xl backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-300">
+                      <h3 className="text-2xl font-bold mb-4 text-white">Space Technology</h3>
+                      <p className="text-gray-300">Learn about cutting-edge space technology and its impact on our future.</p>
                       </div>
-                    </div>
-                  </div>
-
-                  {/* Cursor Composer Section - Hidden on mobile */}
-                  <div className="hidden md:flex md:w-1/2 md:flex-col">
-                    <div className="p-4 border-b border-neutral-800">
-                      <h2 className="text-lg font-medium">Cursor Composer</h2>
-                    </div>
-                    <div className="flex-1 p-4 overflow-y-auto space-y-4">
-                      {/* First Message */}
-                      <div className="flex justify-end">
-                        <div className="max-w-[85%] p-4 bg-neutral-800 rounded-lg">
-                          <p className="text-sm text-neutral-300 text-right">
-                            Sure, I can make those changes for you.
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Status Updates */}
-                      <div className="flex flex-col gap-2">
-                        <div className="self-end max-w-[85%] p-3 bg-neutral-800 rounded-lg">
-                          <p className="text-sm font-medium text-green-400 text-right">File generated</p>
-                        </div>
-                        <div className="self-end max-w-[85%] p-3 bg-neutral-800 rounded-lg">
-                          <p className="text-sm font-medium text-green-400 text-right">File generated</p>
-                        </div>
-                        <div className="self-end max-w-[85%] p-3 bg-neutral-800 rounded-lg">
-                          <p className="text-sm font-medium text-green-400 text-right">File generated</p>
-                        </div>
-                        <div className="self-end max-w-[85%] p-3 bg-neutral-800 rounded-lg">
-                          <p className="text-sm font-medium text-green-400 text-right">File generated</p>
-                        </div>
-                      </div>
-
-                      {/* Completion Message */}
-                      <div className="flex justify-end">
-                        <div className="max-w-[85%] p-4 bg-neutral-800 rounded-lg">
-                          <p className="text-sm text-neutral-300 text-right">
-                            I&apos;ve successfully created your app
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-4 border-t border-neutral-800">
-                      <div className="relative">
-                        <input
-                          type="text"
-                          placeholder="Type your message..."
-                          className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500/30"
-                        />
-                        <button className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-green-500/10 rounded-lg text-green-400 hover:bg-green-500/20 transition-colors">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M22 2L11 13"/>
-                            <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
-                          </svg>
-                        </button>
-                      </div>
+                    <div className="p-6 rounded-2xl backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-300">
+                      <h3 className="text-2xl font-bold mb-4 text-white">Astronomy Insights</h3>
+                      <p className="text-gray-300">Explore fascinating astronomical phenomena and cosmic mysteries.</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+                    </div>
         </section>
 
-        {/* Features Section */}
-        <section className="py-20 px-6 border-t border-neutral-800">
+        {/* Categories Section */}
+        <section className="py-32 px-6 border-t border-neutral-800/10">
           <div className="max-w-[1200px] mx-auto">
-            <div className="text-center mb-16 scroll-animation">
-              <h2 className={`text-3xl md:text-4xl font-medium mb-3 ${playfair.className}`}>Create in Minutes, Not Months</h2>
-              <p className="text-neutral-400 text-lg">Transform your ideas into reality with three simple prompts.</p>
-            </div>
+            <div className="mb-8">
+              <h2 className={`text-4xl font-medium mb-4 ${playfair.className}`}>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Explore</span> our cosmic categories
+              </h2>
+              <p className="text-neutral-400 text-lg max-w-2xl">
+                Navigate through different dimensions of space news and discover stories that matter to you.
+                          </p>
+                        </div>
 
-            <div className="grid md:grid-cols-3 gap-6 relative">
-              <div className="bg-neutral-900 p-8 rounded-xl border border-neutral-800/80 hover:border-green-500/20 transition-colors scroll-animation scroll-delay-1 group">
-                <div className="w-12 h-12 rounded-xl bg-green-500/10 text-green-400 flex items-center justify-center mb-6 group-hover:bg-green-500/20 transition-colors">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                    <polyline points="7 10 12 15 17 10"/>
-                    <line x1="12" y1="15" x2="12" y2="3"/>
-                  </svg>
-                </div>
-                <h3 className={`text-xl font-medium mb-3 group-hover:text-green-400 transition-colors ${playfair.className}`}>Download Template</h3>
-                <p className="text-neutral-400 leading-relaxed">
-                  Get started with our production-ready template. It&apos;s packed with everything you need to build a stunning landing page.
-                </p>
-              </div>
+            {/* Category Pills */}
+            <div className="flex flex-wrap gap-3 mb-12">
+              <Button 
+                variant="outline" 
+                className="rounded-full border-indigo-500/30 hover:bg-indigo-500/10 text-indigo-300"
+              >
+                All
+              </Button>
+              <Button 
+                variant="outline" 
+                className="rounded-full border-indigo-500/30 hover:bg-indigo-500/10 text-indigo-300"
+              >
+                Space Tech
+              </Button>
+              <Button 
+                variant="outline" 
+                className="rounded-full border-indigo-500/30 hover:bg-indigo-500/10 text-indigo-300"
+              >
+                Astronomy
+              </Button>
+              <Button 
+                variant="outline" 
+                className="rounded-full border-indigo-500/30 hover:bg-indigo-500/10 text-indigo-300"
+              >
+                Exploration
+              </Button>
+              <Button 
+                variant="outline" 
+                className="rounded-full border-indigo-500/30 hover:bg-indigo-500/10 text-indigo-300"
+              >
+                Alien Life
+              </Button>
+              <Button 
+                variant="outline" 
+                className="rounded-full border-indigo-500/30 hover:bg-indigo-500/10 text-indigo-300"
+              >
+                Space Art
+              </Button>
+                      </div>
 
-              <div className="bg-neutral-900 p-8 rounded-xl border border-neutral-800/80 hover:border-green-500/20 transition-colors scroll-animation scroll-delay-2 group">
-                <div className="w-12 h-12 rounded-xl bg-green-500/10 text-green-400 flex items-center justify-center mb-6 group-hover:bg-green-500/20 transition-colors">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4z"/>
-                  </svg>
-                </div>
-                <h3 className={`text-xl font-medium mb-3 group-hover:text-green-400 transition-colors ${playfair.className}`}>Tell VibeDev What You Want</h3>
-                <p className="text-neutral-400 leading-relaxed">
-                  Describe your vision in plain English. VibeDev will control Cursor to transform your words into a beautiful, functional design.
-                </p>
-              </div>
+            {/* Category Cards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Category Card 1 */}
+              <div className="group relative">
+                <div className="glimmer-card overflow-hidden rounded-xl aspect-[4/3]">
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 z-10"></div>
+                  <img
+                    src="https://i.pinimg.com/736x/54/4f/c8/544fc8004cadd3cdd1ced84c807ee588.jpg"
+                    alt="Space Technology"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
+                    <h3 className="text-lg font-medium text-white mb-1">Space Technology</h3>
+                    <p className="text-sm text-neutral-300">120 stories</p>
+                        </div>
+                        </div>
+                      </div>
 
-              <div className="bg-neutral-900 p-8 rounded-xl border border-neutral-800/80 hover:border-green-500/20 transition-colors scroll-animation scroll-delay-3 group">
-                <div className="w-12 h-12 rounded-xl bg-green-500/10 text-green-400 flex items-center justify-center mb-6 group-hover:bg-green-500/20 transition-colors">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
-                  </svg>
+              {/* Category Card 2 */}
+              <div className="group relative">
+                <div className="glimmer-card overflow-hidden rounded-xl aspect-[4/3]">
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 z-10"></div>
+                  <img
+                    src="https://i.pinimg.com/736x/49/94/64/4994646af24cad1ac449cd43267af0a1.jpg"
+                    alt="Alien Civilizations"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
+                    <h3 className="text-lg font-medium text-white mb-1">Alien Civilizations</h3>
+                    <p className="text-sm text-neutral-300">85 stories</p>
+                        </div>
+                      </div>
+                    </div>
+
+              {/* Category Card 3 */}
+              <div className="group relative">
+                <div className="glimmer-card overflow-hidden rounded-xl aspect-[4/3]">
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 z-10"></div>
+                  <img
+                    src="https://i.pinimg.com/736x/8b/0b/f2/8b0bf23df6af8ab3ce8c1b6a588ac9dd.jpg"
+                    alt="Space Exploration"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
+                    <h3 className="text-lg font-medium text-white mb-1">Space Exploration</h3>
+                    <p className="text-sm text-neutral-300">95 stories</p>
+                  </div>
+                      </div>
+                    </div>
+
+              {/* Category Card 4 */}
+              <div className="group relative">
+                <div className="glimmer-card overflow-hidden rounded-xl aspect-[4/3]">
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 z-10"></div>
+                  <img
+                    src="https://i.pinimg.com/736x/55/f9/d1/55f9d102dd17c42f48778fa6b64556a1.jpg"
+                    alt="Cosmic Art"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
+                    <h3 className="text-lg font-medium text-white mb-1">Cosmic Art</h3>
+                    <p className="text-sm text-neutral-300">150 stories</p>
+                  </div>
                 </div>
-                <h3 className={`text-xl font-medium mb-3 group-hover:text-green-400 transition-colors ${playfair.className}`}>Deploy to Vercel</h3>
-                <p className="text-neutral-400 leading-relaxed">
-                  Deploy your landing page to Vercel with one click. Share your creation with the world instantly on a global edge network.
-                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Early Access Form Section */}
-        <section id="early-access-form" className="py-20 px-6 border-t border-neutral-800 bg-neutral-900/80">
-          <div className="max-w-[1200px] mx-auto text-center">
-            <div className="scroll-animation">
-              <h2 className={`text-3xl md:text-4xl font-medium mb-4 ${playfair.className}`}>Get Early Access</h2>
-              <p className="text-neutral-400 mb-12">Be the first to experience the future of coding.</p>
+        {/* News & Updates Section */}
+        <section className="py-32 px-6 border-t border-neutral-800/10">
+          <div className="max-w-[1200px] mx-auto">
+            <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+              News & Updates
+            </h2>
+            
+            <div className="relative">
+              {/* News Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* News Card 1 */}
+                <div className="glimmer-card overflow-hidden rounded-xl">
+                  <div className="aspect-[4/3] relative overflow-hidden">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse z-10"></div>
+                    <img
+                      src="https://i.pinimg.com/736x/0f/ff/7b/0fff7bf34ccc49d351ae489f99366be9.jpg"
+                      alt="Breaking news about Jupiter"
+                      className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-6 space-y-4">
+                    <div className="flex items-center gap-2">
+                      <span className="inline-flex animate-pulse">
+                        <span className="text-red-500">🚨</span>
+                      </span>
+                      <h3 className="text-xl font-bold text-white line-clamp-2">Breaking News: President of Jupiter Ends 1,200-Year War with Pluto</h3>
+                    </div>
+                    <p className="text-neutral-300 text-sm line-clamp-3">
+                      In a historic and unexpected declaration, President Remora Pr'ee has officially halted the centuries-long conflict between Jupiter and Pluto...
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <Button 
+                        size="sm"
+                        className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white"
+                      >
+                        Read More
+                      </Button>
+                      <span className="text-sm text-neutral-400">2 hours ago</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* News Card 2 */}
+                <div className="glimmer-card overflow-hidden rounded-xl">
+                  <div className="aspect-[4/3] relative overflow-hidden">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse z-10"></div>
+                    <img
+                      src="https://i.pinimg.com/736x/96/ad/9d/96ad9d885635190d5d14ca011b8140ab.jpg"
+                      alt="Mars Colony Update"
+                      className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-6 space-y-4">
+                    <h3 className="text-xl font-bold text-white line-clamp-2">Mars Colony Reports Record Growth in Sustainable Agriculture</h3>
+                    <p className="text-neutral-300 text-sm line-clamp-3">
+                      The Red Planet's largest biodome complex has achieved a breakthrough in crop yields, promising food independence by 2045...
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <Button 
+                        size="sm"
+                        className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white"
+                      >
+                        Read More
+                      </Button>
+                      <span className="text-sm text-neutral-400">1 day ago</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* News Card 3 */}
+                <div className="glimmer-card overflow-hidden rounded-xl">
+                  <div className="aspect-[4/3] relative overflow-hidden">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse z-10"></div>
+                    <img
+                      src="https://i.pinimg.com/736x/8b/0b/f2/8b0bf23df6af8ab3ce8c1b6a588ac9dd.jpg"
+                      alt="Saturn Ring Tourism"
+                      className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-6 space-y-4">
+                    <h3 className="text-xl font-bold text-white line-clamp-2">Saturn's Rings to Open for Tourist Expeditions in 2026</h3>
+                    <p className="text-neutral-300 text-sm line-clamp-3">
+                      The Planetary Tourism Board has approved the first commercial space tours through Saturn's iconic rings...
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <Button 
+                        size="sm"
+                        className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white"
+                      >
+                        Read More
+                      </Button>
+                      <span className="text-sm text-neutral-400">3 days ago</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* News Card 4 */}
+                <div className="glimmer-card overflow-hidden rounded-xl">
+                  <div className="aspect-[4/3] relative overflow-hidden">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse z-10"></div>
+                    <img
+                      src="https://i.pinimg.com/736x/55/f9/d1/55f9d102dd17c42f48778fa6b64556a1.jpg"
+                      alt="Venus Weather System"
+                      className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-6 space-y-4">
+                    <h3 className="text-xl font-bold text-white line-clamp-2">Venus Weather Control System Shows Promising Results</h3>
+                    <p className="text-neutral-300 text-sm line-clamp-3">
+                      The ambitious climate modification project on Venus has successfully reduced surface temperatures in test areas...
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <Button 
+                        size="sm"
+                        className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white"
+                      >
+                        Read More
+                      </Button>
+                      <span className="text-sm text-neutral-400">1 week ago</span>
+                    </div>
+                  </div>
             </div>
-            <div className="max-w-[400px] mx-auto scroll-animation">
-              <iframe 
-                data-tally-src="https://tally.so/embed/wM756p?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
-                loading="lazy" 
-                width="100%" 
-                height="230" 
-                frameBorder="0" 
-                title="Sign Up for Early Access"
-              ></iframe>
+
+                {/* News Card 5 */}
+                <div className="glimmer-card overflow-hidden rounded-xl">
+                  <div className="aspect-[4/3] relative overflow-hidden">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse z-10"></div>
+                    <img
+                      src="https://i.pinimg.com/736x/49/94/64/4994646af24cad1ac449cd43267af0a1.jpg"
+                      alt="Quantum Space Communication"
+                      className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-6 space-y-4">
+                    <div className="flex items-center gap-2">
+                      <span className="inline-flex">
+                        <span className="text-purple-400">🔮</span>
+                      </span>
+                      <h3 className="text-xl font-bold text-white line-clamp-2">Quantum Entanglement Revolutionizes Deep Space Communication</h3>
+                    </div>
+                    <p className="text-neutral-300 text-sm line-clamp-3">
+                      Scientists achieve instant communication across 50 light-years using advanced quantum entanglement technology, marking a breakthrough in interstellar communications...
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <Button 
+                        size="sm"
+                        className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white"
+                      >
+                        Read More
+                      </Button>
+                      <span className="text-sm text-neutral-400">5 days ago</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* News Card 6 */}
+                <div className="glimmer-card overflow-hidden rounded-xl">
+                  <div className="aspect-[4/3] relative overflow-hidden">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse z-10"></div>
+                    <img
+                      src="https://i.pinimg.com/736x/54/4f/c8/544fc8004cadd3cdd1ced84c807ee588.jpg"
+                      alt="Alien Botanical Gardens"
+                      className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-6 space-y-4">
+                    <div className="flex items-center gap-2">
+                      <span className="inline-flex">
+                        <span className="text-green-400">🌿</span>
+                      </span>
+                      <h3 className="text-xl font-bold text-white line-clamp-2">First Interplanetary Botanical Garden Opens on Europa</h3>
+                    </div>
+                    <p className="text-neutral-300 text-sm line-clamp-3">
+                      Europa's subterranean greenhouse complex successfully cultivates exotic plant species from across the galaxy, creating a unique ecosystem under the ice...
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <Button 
+                        size="sm"
+                        className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white"
+                      >
+                        Read More
+                      </Button>
+                      <span className="text-sm text-neutral-400">4 days ago</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation Arrows */}
+              <button 
+                className="absolute -left-12 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-indigo-500/20 to-purple-500/20 border border-indigo-500/20 backdrop-blur-sm hover:from-indigo-500/30 hover:to-purple-500/30 transition-all"
+                aria-label="Previous page"
+              >
+                <svg className="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              
+              <button 
+                className="absolute -right-12 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-indigo-500/20 to-purple-500/20 border border-indigo-500/20 backdrop-blur-sm hover:from-indigo-500/30 hover:to-purple-500/30 transition-all"
+                aria-label="Next page"
+              >
+                <svg className="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
           </div>
         </section>
-      </main>
 
-      <footer className="py-8 px-6 border-t border-neutral-800/50 scroll-animation">
-        <div className="max-w-[1200px] mx-auto flex items-center justify-between">
+        {/* Premium Subscription Section */}
+        <section className="py-32 px-6 border-t border-neutral-800/10">
+          <div className="max-w-[1200px] mx-auto">
+            <div className="flex flex-col md:flex-row gap-12">
+              {/* Left side - Content Card */}
+              <div className="w-full md:w-1/2 scroll-animation">
+                <div className="glimmer-card p-8">
+                  <div className="inline-flex items-center px-4 py-2 rounded-full bg-indigo-500/30 text-indigo-300 text-sm mb-6">
+                    Premium Access
+                  </div>
+                  
+                  <h2 className={`text-3xl font-medium mb-8 text-white ${playfair.className}`}>
+                    Unlock the Universe of Premium News
+                  </h2>
+
+                  <div className="space-y-6 mb-8">
+                    {/* Feature 1 */}
+                    <div className="flex items-start gap-4 group">
+                      <div className="w-10 h-10 rounded-lg bg-blue-500/30 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-blue-500/40">
+                        <svg className="w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-medium text-blue-400 mb-2">Exclusive Coverage</h3>
+                        <p className="text-neutral-300">Get early access to breaking news and exclusive stories from across the galaxy.</p>
+                      </div>
+                    </div>
+
+                    {/* Feature 2 */}
+                    <div className="flex items-start gap-4 group">
+                      <div className="w-10 h-10 rounded-lg bg-yellow-500/30 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-yellow-500/40">
+                        <svg className="w-5 h-5 text-yellow-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-medium text-yellow-400 mb-2">Ad-Free Experience</h3>
+                        <p className="text-neutral-300">Enjoy uninterrupted news browsing with zero advertisements.</p>
+                      </div>
+                    </div>
+
+                    {/* Feature 3 */}
+                    <div className="flex items-start gap-4 group">
+                      <div className="w-10 h-10 rounded-lg bg-green-500/30 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-green-500/40">
+                        <svg className="w-5 h-5 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-medium text-green-400 mb-2">Premium Analysis</h3>
+                        <p className="text-neutral-300">Deep dive reports and expert analysis from our intergalactic correspondents.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="text-center">
+                      <span className="text-2xl font-bold text-white">$1.99</span>
+                      <span className="text-neutral-400 ml-1">/month</span>
+                    </div>
+                    <Button 
+                      size="lg"
+                      className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white font-medium py-6 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/20"
+                    >
+                      Start Premium Access
+                    </Button>
+                    <p className="text-xs text-center text-neutral-400">Cancel anytime. No commitment required.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right side - Alien Illustration */}
+              <div className="w-full md:w-1/2 scroll-animation scroll-delay-1">
+                <div className="aspect-square relative flex items-center justify-center">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse"></div>
+                  <img
+                    src="https://i.postimg.cc/wBvGFfDr/Alien-science-bro-1.png"
+                    alt="Friendly alien scientist"
+                    className="relative z-10 w-4/5 h-4/5 object-contain drop-shadow-[0_0_30px_rgba(99,102,241,0.4)]"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Newsletter Section */}
+        <section className="py-32 px-6 border-t border-neutral-800/10">
+          <div className="max-w-[1200px] mx-auto">
+            <div className="glimmer-card p-12 relative overflow-hidden">
+              {/* Background Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10"></div>
+              
+              {/* Floating Planet Images */}
+              <div className="absolute top-6 left-8">
+                <img
+                  src="https://i.postimg.cc/3wvq0LmQ/planet-svgrepo-com-1-1.png"
+                  alt="Neptunesan"
+                  className="w-20 h-20 object-contain drop-shadow-[0_0_15px_rgba(99,102,241,0.3)]"
+                />
+              </div>
+              <div className="absolute top-4 right-24">
+                <img
+                  src="https://i.postimg.cc/7hmtrj80/planet-svgrepo-com-1.png"
+                  alt="Saturnchan"
+                  className="w-16 h-16 object-contain drop-shadow-[0_0_15px_rgba(124,58,237,0.3)]"
+                />
+              </div>
+              <div className="absolute top-4 right-6">
+                <img
+                  src="https://i.postimg.cc/YCJn71Vn/planet-solar-system-svgrepo-com-1.png"
+                  alt="Jupitersensei"
+                  className="w-16 h-16 object-contain drop-shadow-[0_0_15px_rgba(99,102,241,0.3)]"
+                />
+              </div>
+
+              {/* Content */}
+              <div className="relative z-10 max-w-2xl mx-auto text-center">
+                <h2 className={`text-3xl md:text-4xl font-medium mb-6 ${playfair.className}`}>
+                  Get notified about cosmic discoveries
+                </h2>
+                <p className="text-neutral-300 mb-8">
+                  Stay updated with the latest space news and stories delivered directly to your inbox
+                </p>
+                
+                {/* Email Input */}
+                <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                  <input
+                    type="email"
+                    placeholder="Enter your email address"
+                    className="flex-grow px-6 py-3 rounded-xl bg-black/30 border border-indigo-500/30 text-white placeholder-neutral-400 focus:outline-none focus:border-indigo-500 transition-colors"
+                  />
+                  <Button 
+                    className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-8"
+                  >
+                    Subscribe
+                  </Button>
+                </div>
+                
+                {/* Social Proof */}
+                <p className="mt-6 text-sm text-neutral-400">
+                  Join 50,000+ space enthusiasts getting weekly updates
+                </p>
+            </div>
+
+              {/* Decorative Elements */}
+              <div className="absolute left-0 bottom-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl"></div>
+              <div className="absolute right-0 top-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl"></div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="pt-40 pb-12 px-6 border-t border-neutral-800/10">
+          <div className="max-w-[1200px] mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+              {/* Logo and Description Column */}
+              <div className="flex flex-col items-start gap-6">
+                <div className="flex items-center gap-2">
+                  <img 
+                    src="/nebula-logo.svg" 
+                    alt="Nebula News Logo" 
+                    className="w-8 h-8 object-contain"
+                  />
+                  <span className={`text-2xl font-medium text-white ${playfair.className}`}>
+                    Nebula News
+                  </span>
+                </div>
+                <div className="space-y-4">
+                  <p className="text-sm text-neutral-400 max-w-xs">
+                    Your premier source for space exploration, astronomy, and cosmic discoveries.
+                  </p>
+                  <div className="w-48 h-48 relative">
+                    <img
+                      src="https://i.postimg.cc/KjJ0vfxL/Astronaut-helmet-rafiki.png"
+                      alt="Astronaut helmet illustration"
+                      className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(99,102,241,0.3)]"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Pages Column */}
+              <div className="flex flex-col gap-4">
+                <h3 className="text-lg font-medium text-white mb-2">Pages</h3>
+                <div className="flex flex-col gap-3">
+                  <Link href="/" className="text-sm text-neutral-400 hover:text-white transition-colors">Home</Link>
+                  <Link href="/social" className="text-sm text-neutral-400 hover:text-white transition-colors">Socials</Link>
+                  <Link href="/worlds" className="text-sm text-neutral-400 hover:text-white transition-colors">Worlds</Link>
+                  <Link href="/community" className="text-sm text-neutral-400 hover:text-white transition-colors">Community</Link>
+                  <Link href="/news" className="text-sm text-neutral-400 hover:text-white transition-colors">News</Link>
+                </div>
+              </div>
+
+              {/* Contact Column */}
+              <div className="flex flex-col gap-4">
+                <h3 className="text-lg font-medium text-white mb-2">Contact</h3>
+                <div className="flex flex-col gap-3">
+                  <a href="mailto:contact@nebulanews.com" className="text-sm text-neutral-400 hover:text-white transition-colors">contact@nebulanews.com</a>
+                  <p className="text-sm text-neutral-400">123 Space Station</p>
+                  <p className="text-sm text-neutral-400">Milky Way Galaxy</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Section */}
+            <div className="pt-8 border-t border-neutral-800/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-sm text-neutral-400">
-            © 2024 Software Composer LP. All rights reserved.
+                © 2024 Estella H LLC. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white transition-colors">
@@ -436,9 +842,11 @@ export default function Page() {
                 <circle cx="4" cy="4" r="2"/>
               </svg>
             </a>
+              </div>
           </div>
         </div>
       </footer>
+      </main>
     </div>
   )
 }
