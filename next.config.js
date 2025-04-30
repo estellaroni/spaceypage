@@ -22,3 +22,11 @@ const nextConfig = {
 }
 
 module.exports = nextConfig 
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    domains: ['i.postimg.cc', 'i.pinimg.com'], // add other domains as needed
+  },
+};
+
+module.exports = nextConfig;
