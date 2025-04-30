@@ -121,6 +121,15 @@ export function AnimatedBackground() {
     const handleResize = () => {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
+
+      // Recalculate planet positions based on new dimensions
+      planets.forEach((planet, index) => {
+        const config = planetConfigs[index]
+        planet.centerX = canvas.width * config.x
+        planet.centerY = canvas.height * config.y
+        planet.x = planet.centerX + Math.cos(planet.angle) * planet.orbitRadius
+        planet.y = planet.centerY + Math.sin(planet.angle) * planet.orbitRadius
+      })
     }
 
     handleResize()
@@ -136,8 +145,17 @@ export function AnimatedBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full -z-10"
-      style={{ background: 'linear-gradient(to bottom, #000000, #1a1a2e)' }}
+      className="fixed inset-0 w-screen h-screen -z-10"
+      style={{ 
+        background: 'linear-gradient(to bottom, #000000, #1a1a2e)',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: '100vw',
+        height: '100vh'
+      }}
     />
   )
 } 

@@ -63,7 +63,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div className={`flex flex-col min-h-screen text-foreground ${inter.className}`}>
+    <div className={`relative flex flex-col min-h-screen w-screen overflow-x-hidden text-foreground ${inter.className}`}>
       <AnimatedBackground />
       
       <style jsx global>{`
