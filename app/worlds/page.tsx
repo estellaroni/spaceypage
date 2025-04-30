@@ -258,10 +258,12 @@ export default function WorldsPage() {
                 <div className="glimmer-card overflow-hidden rounded-xl">
                   <div className="aspect-[16/10] relative overflow-hidden">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] animate-pulse z-10"></div>
-                    <img
+                    <Image
                       src="https://i.pinimg.com/736x/1c/c8/ef/1cc8efba1c0a18819bb57e6e0fa1b6b6.jpg"
-                      alt="Article thumbnail"
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      alt="World image"
+                      width={500}
+                      height={500}
+                      className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="p-4 space-y-3">
